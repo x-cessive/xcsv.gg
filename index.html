@@ -163,6 +163,8 @@ nav a{font:400 8px/1 var(--px);text-transform:uppercase;text-decoration:none;pad
     clip-path:polygon(50% 0,100% 0,100% 100%,50% 100%,50% 75%,0 75%,0 25%,50% 25%);}
 }
 
+@media (max-width:359px){ .cab-screen{grid-template-columns:64px 1fr;gap:12px;} .cab-bot{width:64px;height:64px;} }
+
 /* how */
 .steps{list-style:none;display:grid;gap:var(--s4);grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
 .step{position:relative;border:4px solid var(--navy);padding:var(--s4);box-shadow:6px 6px 0 0 var(--amber);background:var(--paper);}
@@ -659,7 +661,7 @@ footer p+p{margin-top:8px;}
         </div>
       </div>
       <div class="dc-input" aria-hidden="true"><span class="dc-type">/mod user:@pixelgoblin</span><span class="cursor"></span></div>
-      <figcaption><strong>One card, five buttons.</strong> Type /mod and a member's name to see their join date, roles, past infractions and notes, then warn, timeout, kick, ban or silence. Every action will land in your mod log. Only mods will be able to run it, and it won't touch anyone ranked above its own role.</figcaption>
+      <figcaption><strong>One card, five buttons.</strong> You'll type /mod and a member's name to see their join date, roles, past infractions and notes, then warn, timeout, kick, ban or silence. Every action will land in your mod log. Only mods will be able to run it, and it won't touch anyone ranked above its own role.</figcaption>
     </figure>
 
     <div class="dc-grid">
@@ -681,7 +683,7 @@ footer p+p{margin-top:8px;}
             </div>
           </div>
         </div>
-        <figcaption><strong>Private help desk.</strong> Members will open a ticket with a button or /ticket. Staff claim it, close it, and the transcript saves as HTML to an archive channel. One open ticket per member by default, and you can change that.</figcaption>
+        <figcaption><strong>Private help desk.</strong> Members will open a ticket with a button or /ticket. Staff will claim and close it with buttons, and the transcript will save as HTML to an archive channel. It will allow one open ticket per member by default, and you'll be able to change that.</figcaption>
       </figure>
 
       <figure class="dc">
@@ -742,7 +744,7 @@ footer p+p{margin-top:8px;}
         <details class="faq"><summary>Is my server too small for this?</summary><div class="faq-a"><p>My last build was for a 23-member community.</p></div></details>
         <details class="faq"><summary>Do I need Nitro, boosts or paid bots?</summary><div class="faq-a"><p>My last build needed none of them. It runs on Discord's own tools: Community, onboarding and AutoMod.</p></div></details>
         <details class="faq"><summary>How long does a build take?</summary><div class="faq-a"><p>It depends on the size of the server and which build you pick.</p><p class="tbd"><span class="tbd-l">To be confirmed</span> Typical turnaround for each build.</p></div></details>
-        <details class="faq"><summary>Who owns the server?</summary><div class="faq-a"><p>You do, before, during and after. Everything I build stays in your server when the job is done.</p></div></details>
+        <details class="faq"><summary>Who owns the server?</summary><div class="faq-a"><p>You do, the whole time. The channels, roles, onboarding and AutoMod I set up are part of your server, so they stay when the job is done.</p><p class="tbd"><span class="tbd-l">To be confirmed</span> What happens to the XCSV bot after handover.</p></div></details>
         <details class="faq"><summary>How does payment work?</summary><div class="faq-a"><p>Half up front, half on delivery. After handover you have 5 days to check everything and sign off. If something isn't right, tell me in those 5 days.</p></div></details>
         <details class="faq"><summary>Can I get a refund?</summary><div class="faq-a"><p class="tbd"><span class="tbd-l">To be confirmed</span> The refund policy isn't set yet. Ask me before you pay and I'll tell you where it stands.</p></div></details>
         <details class="faq"><summary>Is there a limit on founding prices?</summary><div class="faq-a"><p class="tbd"><span class="tbd-l">To be confirmed</span> The number of founding spots and the end date aren't set yet.</p></div></details>
