@@ -3,158 +3,549 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>XCSV — One bot for your whole Discord</title>
-<meta name="description" content="XCSV replaces the nine-bot Frankenstein: moderation, tickets, roles, live alerts, giveaways. Done-for-you Discord builds for streamers and gaming communities.">
-<link rel="icon" type="image/png" href="assets/avatar.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<title>XCSV | Discord server builds for streamers and gaming communities</title>
+<meta name="description" content="I rebuild Discord servers for streamers and gaming communities: channels, roles, onboarding, AutoMod. Start with a free audit of your server.">
+<link rel="canonical" href="https://xcsv.gg/">
+<meta name="theme-color" content="#1f3a5f">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="XCSV">
+<meta property="og:url" content="https://xcsv.gg/">
+<meta property="og:title" content="XCSV | Your Discord server, rebuilt properly">
+<meta property="og:description" content="Done-for-you Discord builds for streamers and gaming communities. Free server audit first. Founding clients pay half price.">
+<meta property="og:image" content="https://xcsv.gg/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The XCSV robot mascot, a pixel-art robot head on a navy background.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="XCSV | Your Discord server, rebuilt properly">
+<meta name="twitter:description" content="Done-for-you Discord builds for streamers and gaming communities. Free server audit first. Founding clients pay half price.">
+<meta name="twitter:image" content="https://xcsv.gg/assets/og.png">
+<meta name="twitter:image:alt" content="The XCSV robot mascot, a pixel-art robot head on a navy background.">
+
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/press-start-2p.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face{font-family:'Press Start 2P';src:url(assets/fonts/press-start-2p.woff2) format('woff2');font-display:swap;}
 :root{
-  --amber:#e8a13d; --navy:#1f3a5f; --navy-deep:#14263f; --paper:#f5f0e6;
+  --amber:#e8a13d; --navy:#1f3a5f; --paper:#f5f0e6;
+  --px:'Press Start 2P',monospace;
+  --body:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"Cascadia Mono",Consolas,Menlo,monospace;
+  --s1:4px; --s2:8px; --s3:16px; --s4:24px; --s5:32px; --s6:48px; --s7:64px; --s8:96px;
+  --header-h:92px;
 }
-*{box-sizing:border-box; margin:0; padding:0;}
-body{background:var(--navy-deep); color:var(--paper); font-family:Verdana,Geneva,sans-serif; line-height:1.7;}
-h1,h2,h3,.px{font-family:'Press Start 2P',monospace; line-height:1.5;}
-.wrap{max-width:960px; margin:0 auto; padding:0 24px;}
-header{border-bottom:4px solid var(--amber); background:var(--navy);}
-header .wrap{display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px;}
-.brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--paper);}
-.brand img{width:40px; height:40px; image-rendering:pixelated;}
-.brand span{font-family:'Press Start 2P',monospace; font-size:18px; color:var(--amber);}
-nav a{color:var(--paper); text-decoration:none; margin-left:20px; font-size:14px;}
-nav a:hover{color:var(--amber);}
-.hero{text-align:center; padding:72px 24px 56px;}
-.hero img.mascot{width:160px; height:160px; image-rendering:pixelated; margin-bottom:28px;}
-.hero h1{font-size:clamp(20px,4vw,34px); color:var(--amber); margin-bottom:24px;}
-.hero p.lede{font-size:19px; max-width:640px; margin:0 auto 32px;}
-.btn{display:inline-block; font-family:'Press Start 2P',monospace; font-size:14px; background:var(--amber); color:var(--navy-deep); padding:16px 28px; text-decoration:none; border:0; cursor:pointer; box-shadow:0 6px 0 #a86f22;}
-.btn:hover{background:#f2b355;}
-.btn:active{transform:translateY(4px); box-shadow:0 2px 0 #a86f22;}
-section{padding:56px 0;}
-section.alt{background:var(--navy);}
-h2{font-size:clamp(16px,3vw,22px); color:var(--amber); margin-bottom:32px; text-align:center;}
-.steps{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:24px;}
-.step{background:var(--navy-deep); border:2px solid var(--amber); padding:28px 24px;}
-.step .n{font-family:'Press Start 2P',monospace; color:var(--amber); font-size:22px; display:block; margin-bottom:12px;}
-.step h3{font-size:13px; margin-bottom:10px; color:var(--paper);}
-.step p{font-size:15px;}
-.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px;}
-.card{background:var(--navy-deep); border:2px solid var(--amber); padding:32px 28px; display:flex; flex-direction:column;}
-.card h3{font-size:14px; color:var(--amber); margin-bottom:8px;}
-.card .price{font-family:'Press Start 2P',monospace; font-size:22px; margin:12px 0 4px;}
-.card .was{font-size:14px; opacity:.65; text-decoration:line-through;}
-.card ul{list-style:none; margin:16px 0 24px; font-size:15px; flex:1;}
-.card ul li{margin-bottom:8px; padding-left:22px; position:relative;}
-.card ul li::before{content:"▸"; position:absolute; left:0; color:var(--amber);}
-.card .btn{font-size:11px; text-align:center;}
-.proof{max-width:720px; margin:0 auto; text-align:center; font-size:17px;}
-.proof .stat{font-family:'Press Start 2P',monospace; color:var(--amber); font-size:28px; display:block; margin:18px 0 6px;}
-.terms{text-align:center; font-size:15px; opacity:.85;}
-#contact{text-align:center;}
-#contact p{margin-bottom:24px; font-size:17px;}
-footer{border-top:4px solid var(--amber); background:var(--navy); padding:28px 0; text-align:center; font-size:13px; opacity:.8;}
-footer .px{font-size:12px; color:var(--amber);}
-@media (max-width:600px){ nav{display:none;} }
+*{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-text-size-adjust:100%;}
+body{background:var(--navy);color:var(--paper);font:17px/1.6 var(--body);}
+img{display:block;max-width:100%;}
+.px-img{image-rendering:pixelated;image-rendering:crisp-edges;}
+h1,h2,h3,.px{font-family:var(--px);font-weight:400;line-height:1.5;text-transform:uppercase;letter-spacing:0;}
+h1{font-size:24px;} h2{font-size:16px;} h3{font-size:16px;}
+@media (min-width:600px){ h1{font-size:32px;} h2{font-size:24px;} }
+@media (min-width:900px){ h1{font-size:40px;} }
+p{max-width:62ch;}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+
+.wrap{max-width:1040px;margin:0 auto;padding:0 var(--s3);}
+@media (min-width:600px){ .wrap{padding:0 var(--s5);} }
+section{padding:var(--s7) 0;scroll-margin-top:var(--header-h);}
+@media (min-width:900px){ section{padding:var(--s8) 0;} }
+.on-navy{background:var(--navy);color:var(--paper);--ink:var(--paper);--edge:var(--paper);}
+.on-paper{background:var(--paper);color:var(--navy);--ink:var(--navy);--edge:var(--navy);}
+h2{color:var(--amber);margin-bottom:var(--s5);}
+.on-paper h2{color:var(--navy);}
+h2::before{content:"";display:inline-block;width:8px;height:8px;background:var(--amber);margin:0 20px 0 4px;vertical-align:middle;box-shadow:0 0 0 4px var(--edge);}
+.intro{font-size:18px;margin-bottom:var(--s6);}
+
+/* pixel-stepped dividers: SVG, crispEdges, no gradients */
+.px-edge{height:16px;background-repeat:repeat-x;background-position:left bottom;background-size:32px 16px;}
+.px-edge.to-paper{background-color:var(--navy);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='16' shape-rendering='crispEdges'%3E%3Cpath fill='%23f5f0e6' d='M0 8h8v8H0zM8 4h8v12H8zM16 0h8v16h-8zM24 4h8v12h-8z'/%3E%3C/svg%3E");}
+.px-edge.to-navy{background-color:var(--paper);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='16' shape-rendering='crispEdges'%3E%3Cpath fill='%231f3a5f' d='M0 8h8v8H0zM8 4h8v12H8zM16 0h8v16h-8zM24 4h8v12h-8z'/%3E%3C/svg%3E");}
+
+/* pixel bullets */
+.px-list{list-style:none;}
+.px-list li{position:relative;padding-left:28px;margin-bottom:10px;}
+.px-list li::before{content:"";position:absolute;left:0;top:.6em;width:8px;height:8px;background:var(--amber);}
+.on-paper .px-list li::before{background:var(--navy);}
+
+/* blinking block cursor */
+.cursor::after{content:"";display:inline-block;width:.6em;height:1em;margin-left:6px;vertical-align:-2px;background:currentColor;animation:blink 1s steps(1,end) infinite;}
+@keyframes blink{50%{visibility:hidden;}}
+
+/* buttons: amber cap, hard offset base, press slams down */
+.btn{display:inline-block;font:400 12px/1.5 var(--px);text-transform:uppercase;text-decoration:none;text-align:center;
+  background:var(--amber);color:var(--navy);border:4px solid var(--navy);padding:16px 24px;min-height:48px;cursor:pointer;
+  box-shadow:6px 6px 0 0 var(--edge);transition:transform 120ms steps(2,end),box-shadow 120ms steps(2,end);}
+@media (min-width:600px){ .btn{font-size:16px;} }
+@media (hover:hover){ .btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 0 var(--edge);} }
+.btn:active{transform:translate(6px,6px);box-shadow:0 0 0 0 var(--edge);transition:none;}
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--ink);}
+.btn--sm{font-size:8px;padding:12px 14px;min-height:44px;box-shadow:4px 4px 0 0 var(--edge);}
+@media (min-width:600px){ .btn--sm{font-size:8px;} }
+
+/* focus */
+:focus-visible{outline:4px solid var(--amber);outline-offset:4px;}
+.on-paper :focus-visible{outline-color:var(--navy);}
+.btn:focus-visible{outline-color:var(--ink);outline-offset:8px;}
+a{color:inherit;text-decoration-thickness:2px;text-underline-offset:4px;}
+.on-navy p a,.on-navy li a{color:var(--amber);}
+.skip{position:absolute;left:-9999px;top:16px;z-index:20;}
+.skip:focus{left:16px;}
+
+/* header */
+.site-head{position:sticky;top:0;z-index:10;background:var(--navy);border-bottom:4px solid var(--amber);}
+.head-row{display:flex;align-items:center;gap:16px;min-height:88px;}
+.brand{display:flex;align-items:center;gap:12px;color:var(--amber);text-decoration:none;margin-right:auto;}
+.brand span{font-size:16px;}
+nav a{font:400 8px/1 var(--px);text-transform:uppercase;text-decoration:none;padding:12px 8px;display:inline-block;color:var(--paper);}
+@media (min-width:900px){ nav a{font-size:12px;padding:12px 10px;} }
+@media (hover:hover){ nav a:hover{box-shadow:inset 0 -4px 0 0 var(--amber);} }
+@media (max-width:599px){
+  :root{--header-h:0px;}
+  .site-head{position:static;}
+  .head-row{flex-wrap:wrap;padding-top:12px;padding-bottom:12px;min-height:0;}
+  .head-row .btn--sm{display:none;}
+  nav{order:3;width:100%;display:grid;grid-template-columns:repeat(5,1fr);gap:4px;}
+  nav a{text-align:center;padding:16px 0;border:2px solid var(--paper);}
+}
+
+/* hero */
+.hero{padding-top:var(--s6);}
+.hero-grid{display:grid;gap:var(--s5);align-items:center;}
+.hero .mascot{width:200px;height:200px;justify-self:center;order:-1;animation:bob 1.2s steps(1,end) infinite;}
+@keyframes bob{50%{transform:translateY(-8px);}}
+.kicker{font-size:8px;color:var(--amber);margin-bottom:var(--s3);}
+.lede{font-size:19px;margin:var(--s4) 0 var(--s5);}
+.cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s4);margin-bottom:var(--s4);}
+.micro{font-size:15px;}
+.text-link{font:400 12px/1.5 var(--px);text-transform:uppercase;color:var(--paper);padding:12px 0;}
+.tag{display:inline-block;font-size:8px;color:var(--navy);background:var(--amber);padding:8px 10px;margin-top:var(--s4);}
+@media (min-width:900px){ .hero-grid{grid-template-columns:1fr 400px;} .hero .mascot{width:400px;height:400px;order:0;} }
+@media (max-width:599px){ .hero .btn{display:block;width:100%;} .hero .cta-row{gap:var(--s3);} }
+
+/* how */
+.steps{list-style:none;display:grid;gap:var(--s4);grid-template-columns:repeat(auto-fit,minmax(220px,1fr));counter-reset:step;}
+.step{border:4px solid var(--navy);padding:var(--s4);box-shadow:6px 6px 0 0 var(--amber);background:var(--paper);}
+.step .n{display:block;font-size:8px;margin-bottom:var(--s3);}
+.step h3{font-size:16px;margin-bottom:12px;}
+.step p{font-size:16px;}
+.step a{font-weight:700;}
+
+/* bot showcase: mock Discord windows */
+.dc{background:var(--navy);border:4px solid var(--paper);box-shadow:8px 8px 0 0 var(--amber);margin:0 8px var(--s6) 0;}
+.dc-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;background:var(--paper);color:var(--navy);padding:10px 14px;}
+.dc-bar .px{font-size:12px;margin-right:auto;}
+.dc-ex{font:400 8px var(--px);text-transform:uppercase;}
+.dc-body{padding:var(--s4) var(--s3);font-size:16px;}
+.dc-msg{display:grid;grid-template-columns:32px 1fr;gap:12px;margin-bottom:var(--s3);}
+.dc-msg:last-child{margin-bottom:0;}
+.dc-av{width:32px;height:32px;}
+.dc-av-user{width:32px;height:32px;background:var(--paper);}
+.dc-name{font-weight:700;color:var(--amber);}
+.dc-name.user{color:var(--paper);}
+.dc-tag{font:400 8px var(--px);text-transform:uppercase;background:var(--amber);color:var(--navy);padding:3px 6px;margin-left:6px;vertical-align:2px;}
+.dc-note{font-size:14px;}
+.dc-embed{border:2px solid var(--paper);border-left:8px solid var(--amber);padding:var(--s3);margin-top:8px;}
+.dc-title{font-size:12px;color:var(--amber);margin-bottom:var(--s3);}
+.dc-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px 24px;margin-bottom:var(--s3);}
+.dc-fields dt{font:400 8px/1.5 var(--px);text-transform:uppercase;color:var(--amber);}
+.dc-fields dd{font-family:var(--mono);font-size:15px;}
+.dc-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.dc-btn{font:400 8px/1 var(--px);text-transform:uppercase;padding:12px;border:2px solid var(--paper);}
+.dc-btn.hot{background:var(--amber);color:var(--navy);border-color:var(--amber);}
+.dc-input{margin:0 var(--s3) var(--s3);border:2px solid var(--paper);padding:12px;font-family:var(--mono);font-size:15px;}
+.dc-type{display:inline-block;overflow:hidden;white-space:nowrap;vertical-align:bottom;width:19ch;animation:type 2s steps(19,end) 1 both;}
+@keyframes type{from{width:0;}}
+.dc figcaption{border-top:4px solid var(--paper);padding:var(--s3);font-size:16px;}
+.dc figcaption strong{color:var(--amber);font-weight:700;}
+.dc-grid{display:grid;gap:var(--s5);grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+.dc-grid .dc{margin-bottom:0;}
+.status{display:inline-block;font:400 8px/1 var(--px);text-transform:uppercase;padding:6px 8px;border:2px solid var(--navy);white-space:nowrap;}
+.s-build{background:var(--amber);color:var(--navy);}
+.s-plan{background:var(--paper);color:var(--navy);border-style:dashed;}
+.chips{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--s6);}
+.chips li{font:400 8px/1.5 var(--px);text-transform:uppercase;padding:10px 12px;border:2px dashed var(--paper);}
+.chips-note{margin-top:var(--s3);font-size:16px;}
+.perms{list-style:none;display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:var(--s6);}
+.perms li{border:4px solid var(--amber);padding:var(--s3);font:400 8px/1.8 var(--px);text-transform:uppercase;}
+
+/* offers */
+.founding{font-size:18px;margin-bottom:var(--s6);}
+.cards{display:grid;gap:var(--s5);grid-template-columns:repeat(auto-fit,minmax(270px,1fr));}
+.card{position:relative;background:var(--navy);color:var(--paper);padding:var(--s5) var(--s4);display:flex;flex-direction:column;
+  border:4px solid var(--navy);box-shadow:8px 8px 0 0 var(--amber);margin:0 8px 8px 0;}
+.card.pick{border-color:var(--amber);}
+.card h3{color:var(--amber);font-size:16px;}
+.card .for{font-size:15px;margin-top:12px;}
+.sticker{position:absolute;top:-16px;right:16px;font:400 12px/1 var(--px);background:var(--amber);color:var(--navy);padding:8px;border:4px solid var(--navy);}
+.ribbon{position:absolute;top:-16px;left:16px;font:400 8px/1 var(--px);text-transform:uppercase;background:var(--paper);color:var(--navy);padding:10px 8px;border:4px solid var(--navy);}
+.was{font:400 16px/1.5 var(--px);margin-top:var(--s4);}
+.was s{text-decoration-color:var(--amber);text-decoration-thickness:4px;}
+.price{font:400 32px/1.2 var(--px);color:var(--amber);margin:8px 0 var(--s4);}
+.card .px-list li::before{background:var(--amber);}
+.card .px-list{flex:1;margin-bottom:var(--s4);font-size:16px;}
+.card .note{font:400 8px/1.8 var(--px);text-transform:uppercase;border:2px dashed var(--paper);padding:8px 10px;margin-bottom:var(--s4);}
+.card .btn{--edge:var(--paper);--ink:var(--paper);font-size:12px;}
+.card .alt{font-size:15px;margin-top:var(--s4);text-align:center;}
+.card .alt a{color:var(--paper);}
+.band{margin-top:var(--s7);border:4px solid var(--navy);padding:var(--s5) var(--s4);display:grid;gap:var(--s4);align-items:center;}
+@media (min-width:900px){ .band{grid-template-columns:1fr auto;} }
+.band h3{font-size:16px;margin-bottom:8px;}
+.terms{display:grid;gap:var(--s4);grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:var(--s7);}
+.terms h3{font-size:12px;margin-bottom:var(--s3);}
+
+/* proof */
+.meta{font-size:8px;color:var(--amber);margin:-16px 0 var(--s4);}
+.stats{display:grid;gap:var(--s3);grid-template-columns:repeat(2,1fr);margin:var(--s5) 0;}
+@media (min-width:900px){ .stats{grid-template-columns:repeat(4,1fr);} }
+.stat{border:4px solid var(--amber);padding:var(--s3);font-size:15px;}
+.stat .n{display:block;font-size:32px;color:var(--amber);margin-bottom:8px;}
+.proof-cols{display:grid;gap:var(--s5);}
+@media (min-width:900px){ .proof-cols{grid-template-columns:3fr 2fr;} }
+.pending{display:grid;gap:var(--s3);align-content:start;}
+.slot{border:4px dashed var(--paper);padding:var(--s4);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;font-size:16px;}
+.foot-note{margin-top:var(--s5);font-size:16px;}
+
+/* faq */
+.faq{border:4px solid var(--navy);margin-bottom:var(--s3);background:var(--paper);max-width:820px;}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;align-items:center;
+  font:400 12px/1.8 var(--px);text-transform:uppercase;padding:var(--s3);min-height:48px;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:"+";font-size:16px;flex:none;}
+.faq[open] summary::after{content:"-";}
+.faq[open] summary{background:var(--navy);color:var(--paper);}
+@media (hover:hover){ .faq summary:hover{box-shadow:inset 8px 0 0 0 var(--amber);} }
+.faq summary:focus-visible{outline-offset:-8px;}
+.faq[open] summary:focus-visible{outline-color:var(--amber);}
+.faq-a{padding:var(--s3) var(--s3) var(--s4);}
+.faq-a p+p{margin-top:12px;}
+
+/* contact */
+.cta-end{text-align:center;display:grid;justify-items:center;gap:var(--s4);}
+.cta-end h2{margin-bottom:0;}
+.cta-end h2::before{display:none;}
+.cta-end img{width:128px;height:128px;}
+.cta-end p{font-size:18px;}
+.addr{font-family:var(--mono);font-size:16px;}
+
+/* mobile sticky CTA: lives inside .sticky-zone, which ends before #contact */
+.mbar{display:none;}
+@media (max-width:599px){
+  .mbar{display:block;position:sticky;bottom:0;z-index:9;background:var(--navy);border-top:4px solid var(--amber);
+    padding:8px 16px calc(8px + env(safe-area-inset-bottom));}
+  .mbar a{display:block;font:400 12px/1 var(--px);text-transform:uppercase;text-decoration:none;text-align:center;
+    background:var(--amber);color:var(--navy);padding:14px 8px;}
+}
+
+footer{border-top:4px solid var(--amber);padding:var(--s5) 0;font-size:15px;}
+footer .px{color:var(--amber);font-size:12px;}
+footer p+p{margin-top:8px;}
+
+@media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth;} }
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;}
+  .dc-type{width:auto!important;}
+}
 </style>
 </head>
 <body>
-<header>
-  <div class="wrap">
-    <a class="brand" href="#"><img src="assets/avatar.png" alt="XCSV"><span>XCSV</span></a>
-    <nav>
-      <a href="#how">How it works</a>
-      <a href="#offers">Offers</a>
-      <a href="#proof">Proof</a>
-      <a href="#contact">Contact</a>
+<a class="skip btn btn--sm" href="#main">Skip to content</a>
+
+<header class="site-head on-navy">
+  <div class="wrap head-row">
+    <a class="brand" href="#top"><img class="px-img" src="assets/icon-192.png" width="64" height="64" alt=""><span class="px">XCSV</span></a>
+    <nav aria-label="Main">
+      <a href="#how">How</a><a href="#bot">Bot</a><a href="#offers">Prices</a><a href="#proof">Proof</a><a href="#faq">FAQ</a>
     </nav>
+    <a class="btn btn--sm" href="#contact">Free audit</a>
   </div>
 </header>
 
-<div class="hero wrap">
-  <img class="mascot" src="assets/avatar.png" alt="XCSV bot mascot">
-  <h1>ONE BOT FOR YOUR WHOLE DISCORD.</h1>
-  <p class="lede">Most servers run nine bots that fight each other. XCSV replaces all of them — moderation, tickets, roles, live alerts, giveaways — one bot, configured for your community.</p>
-  <a class="btn" href="#contact">GET A FREE SERVER AUDIT</a>
-</div>
+<main id="main">
+<div class="sticky-zone">
 
-<section class="alt" id="how">
-  <div class="wrap">
-    <h2>HOW IT WORKS</h2>
-    <div class="steps">
-      <div class="step"><span class="n">01</span><h3>FREE AUDIT</h3><p>I tear down your server — channels, roles, bots, permissions — and send you the fix list. Yours to keep either way.</p></div>
-      <div class="step"><span class="n">02</span><h3>PICK YOUR BUILD</h3><p>Launch Kit, Custom Bot, or Full Engine. Founding clients get 50% off.</p></div>
-      <div class="step"><span class="n">03</span><h3>LAUNCH</h3><p>Live in days, with docs. A care plan keeps it sharp month after month.</p></div>
+<section class="hero on-navy" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="px kicker">Discord builds for streamers and gaming communities</p>
+      <h1>Your Discord, rebuilt properly.</h1>
+      <p class="lede">I build Discord servers for streamers and gaming communities. Clean channels, roles that make sense, onboarding that sorts new members, and AutoMod switched on. I'll audit your server for free and send you the list of what's broken.</p>
+      <div class="cta-row">
+        <a class="btn" href="mailto:hello@xcsv.gg?subject=Free%20server%20audit&amp;body=Server%20name%3A%0D%0AInvite%20link%20%28or%20say%20you%27ll%20send%20screenshots%29%3A%0D%0ARough%20member%20count%3A%0D%0AWhat%20it%27s%20for%20%28streaming%2C%20gaming%20clan%2C%20other%29%3A%0D%0ABots%20you%20run%20now%3A%0D%0AWhat%27s%20broken%20or%20annoying%3A%0D%0AAnything%20to%20keep%20exactly%20as%20it%20is%3A%0D%0A">Get a free audit</a>
+        <a class="text-link" href="#offers">See prices</a>
+      </div>
+      <p class="micro">Free. No call needed. The fix list is yours whether you hire me or not.</p>
+      <p class="px tag">Founding clients pay 50%</p>
     </div>
+    <img class="mascot px-img" src="assets/mascot-full.png" width="400" height="400" alt="XCSV robot mascot: a smiling orange pixel-art robot head with an antenna">
   </div>
 </section>
 
-<section id="offers">
+<div class="px-edge to-paper" aria-hidden="true"></div>
+
+<section class="on-paper" id="how">
   <div class="wrap">
-    <h2>OFFERS</h2>
+    <h2>How it works</h2>
+    <ol class="steps" role="list">
+      <li class="step"><span class="px n">Stage 1</span><h3>Free audit</h3><p>Email me about your server. I go through your channels, roles, bots, permissions, onboarding and AutoMod, then send you a written fix list. It's yours to keep. <a href="mailto:hello@xcsv.gg?subject=Free%20server%20audit&amp;body=Server%20name%3A%0D%0AInvite%20link%20%28or%20say%20you%27ll%20send%20screenshots%29%3A%0D%0ARough%20member%20count%3A%0D%0AWhat%20it%27s%20for%20%28streaming%2C%20gaming%20clan%2C%20other%29%3A%0D%0ABots%20you%20run%20now%3A%0D%0AWhat%27s%20broken%20or%20annoying%3A%0D%0AAnything%20to%20keep%20exactly%20as%20it%20is%3A%0D%0A">Ask for yours</a>.</p></li>
+      <li class="step"><span class="px n">Stage 2</span><h3>Pick a build</h3><p>Launch Kit, Custom Bot or Full Engine. Founding clients pay half the normal price.</p></li>
+      <li class="step"><span class="px n">Stage 3</span><h3>I build it</h3><p>I do the work in your server. I reorganize instead of deleting. You get handover notes on what changed and why.</p></li>
+      <li class="step"><span class="px n">Stage 4</span><h3>Care plan</h3><p>Optional. A monthly plan covers updates, new bot features as they ship, and priority support.</p></li>
+    </ol>
+  </div>
+</section>
+
+<div class="px-edge to-navy" aria-hidden="true"></div>
+
+<section class="on-navy" id="bot">
+  <div class="wrap">
+    <h2>What the XCSV bot does</h2>
+    <p class="intro">I'm building my own Discord bot for client servers. It runs on slash commands and buttons, with no prefix commands to memorise. Every feature gets tested on a real community server before any client gets it. The label on each window says where it stands today.</p>
+
+    <ul class="perms" role="list">
+      <li>Slash commands and buttons only</li>
+      <li>Asks only for the permissions it needs</li>
+      <li>Never asks for Administrator</li>
+      <li>Every mod action logged</li>
+    </ul>
+
+    <figure class="dc">
+      <div class="dc-bar"><span class="px">/mod</span><span class="status s-build">Building now</span><span class="dc-ex">Example</span></div>
+      <div class="dc-body">
+        <div class="dc-msg">
+          <img class="px-img dc-av" src="assets/favicon-32.png" width="32" height="32" alt="">
+          <div>
+            <p class="dc-name">XCSV <span class="dc-tag">Bot</span></p>
+            <p class="dc-note">Only you can see this</p>
+            <div class="dc-embed">
+              <p class="px dc-title">User card: pixelgoblin</p>
+              <dl class="dc-fields">
+                <div><dt>Joined</dt><dd>14 Mar 2025</dd></div>
+                <div><dt>Roles</dt><dd>Member, Minecraft</dd></div>
+                <div><dt>Past infractions</dt><dd>1 warning (spam)</dd></div>
+                <div><dt>Notes</dt><dd>Keep trades in #market</dd></div>
+              </dl>
+              <div class="dc-btns"><span class="dc-btn">Warn</span><span class="dc-btn hot">Timeout</span><span class="dc-btn">Kick</span><span class="dc-btn">Ban</span><span class="dc-btn">Silence</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="dc-msg">
+          <img class="px-img dc-av" src="assets/favicon-32.png" width="32" height="32" alt="">
+          <div>
+            <p class="dc-name">XCSV <span class="dc-tag">Bot</span> <span class="dc-note">in #mod-log</span></p>
+            <div class="dc-embed"><p>Timeout · pixelgoblin · 1 hour<br>By ModTeam_Rae · Reason: spam in #general</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="dc-input" aria-hidden="true"><span class="dc-type">/mod user:@pixelgoblin</span><span class="cursor"></span></div>
+      <figcaption><strong>Look up a member and act from one card.</strong> Warn, timeout, kick, ban or silence, and every action goes to your mod log. Only members with mod permissions can use it, and it won't act on anyone ranked above its own role.</figcaption>
+    </figure>
+
+    <div class="dc-grid">
+      <figure class="dc">
+        <div class="dc-bar"><span class="px">Tickets</span><span class="status s-plan">On the build plan</span></div>
+        <div class="dc-body">
+          <div class="dc-msg">
+            <img class="px-img dc-av" src="assets/favicon-32.png" width="32" height="32" alt="">
+            <div>
+              <p class="dc-name">XCSV <span class="dc-tag">Bot</span> <span class="dc-note">in #support</span></p>
+              <div class="dc-embed"><p>Need help from the mods? Open a ticket.</p><div class="dc-btns"><span class="dc-btn hot">Open a ticket</span></div></div>
+            </div>
+          </div>
+          <div class="dc-msg">
+            <img class="px-img dc-av" src="assets/favicon-32.png" width="32" height="32" alt="">
+            <div>
+              <p class="dc-name">XCSV <span class="dc-tag">Bot</span> <span class="dc-note">in #ticket-0042</span></p>
+              <div class="dc-embed"><p>Ticket opened by pixelgoblin.</p><div class="dc-btns"><span class="dc-btn">Claim</span><span class="dc-btn">Close</span></div></div>
+            </div>
+          </div>
+        </div>
+        <figcaption><strong>Members open a private ticket.</strong> Your staff claim it and close it, and the transcript is saved to an archive channel. One open ticket per member by default.</figcaption>
+      </figure>
+
+      <figure class="dc">
+        <div class="dc-bar"><span class="px">Live alerts</span><span class="status s-plan">On the build plan</span></div>
+        <div class="dc-body">
+          <div class="dc-msg">
+            <img class="px-img dc-av" src="assets/favicon-32.png" width="32" height="32" alt="">
+            <div>
+              <p class="dc-name">XCSV <span class="dc-tag">Bot</span> <span class="dc-note">in #going-live</span></p>
+              <div class="dc-embed"><p class="px dc-title">YourChannel is live</p><p>Arma Reforger night ops with the squad</p><div class="dc-btns"><span class="dc-btn hot">Watch now</span></div></div>
+            </div>
+          </div>
+        </div>
+        <figcaption><strong>Posts in your server when you go live</strong>, so your community knows to show up. Part of the Full Engine streamer kit.</figcaption>
+      </figure>
+
+      <figure class="dc">
+        <div class="dc-bar"><span class="px">Giveaways</span><span class="status s-plan">On the build plan</span></div>
+        <div class="dc-body">
+          <div class="dc-msg">
+            <img class="px-img dc-av" src="assets/favicon-32.png" width="32" height="32" alt="">
+            <div>
+              <p class="dc-name">XCSV <span class="dc-tag">Bot</span> <span class="dc-note">in #giveaways</span></p>
+              <div class="dc-embed"><p class="px dc-title">Giveaway: [prize]</p><p>Ends in 2 days · 1 winner</p><div class="dc-btns"><span class="dc-btn hot">Enter</span></div></div>
+            </div>
+          </div>
+        </div>
+        <figcaption><strong>Members enter with one button</strong> and the bot draws the winner. Part of the Full Engine streamer kit.</figcaption>
+      </figure>
+    </div>
+
+    <ul class="chips" role="list"><li>/rr reaction roles</li><li>Timed messages</li><li>/invites + tenure badges</li></ul>
+    <p class="chips-note">Also on the build plan. All windows above are mock-ups of the planned design; names and messages are examples.</p>
+  </div>
+</section>
+
+<div class="px-edge to-paper" aria-hidden="true"></div>
+
+<section class="on-paper" id="offers">
+  <div class="wrap">
+    <h2>Pick your build</h2>
+    <p class="founding">Founding clients pay half while I build my portfolio. In return I ask for honest feedback and, if you're happy, a testimonial.</p>
     <div class="cards">
-      <div class="card">
-        <h3>LAUNCH KIT</h3>
-        <div class="was">$600</div><div class="price">$300</div>
-        <ul>
-          <li>Full server build — channels, roles, permissions</li>
-          <li>Onboarding flow + AutoMod lockdown</li>
-          <li>Done for you, live in days</li>
+      <article class="card pick">
+        <span class="ribbon">Start here</span><span class="sticker">-50%</span>
+        <h3>Launch Kit</h3>
+        <p class="for">For a server that works but is a mess.</p>
+        <p class="was"><span class="sr-only">Regular price </span><s>$600</s></p>
+        <p class="price"><span class="sr-only">Founding price </span>$300</p>
+        <ul class="px-list">
+          <li>Full server build: channels, categories, roles and permissions</li>
+          <li>Discord's built-in onboarding, set up with your questions</li>
+          <li>AutoMod rules on, @everyone pings locked down</li>
+          <li>Rules, welcome and info posts written and pinned</li>
+          <li>Hidden mod-log channel</li>
         </ul>
-        <a class="btn" href="#contact">START WITH LAUNCH KIT</a>
-      </div>
-      <div class="card">
-        <h3>CUSTOM BOT</h3>
-        <div class="was">$1,800</div><div class="price">$900</div>
-        <ul>
+        <a class="btn btn--ghost" href="mailto:hello@xcsv.gg?subject=Launch%20Kit%20%28founding%20price%29&amp;body=Interested%20in%3A%20Launch%20Kit%0D%0AServer%20name%3A%0D%0AInvite%20link%20%28or%20say%20you%27ll%20send%20screenshots%29%3A%0D%0ARough%20member%20count%3A%0D%0AWhat%20it%27s%20for%20%28streaming%2C%20gaming%20clan%2C%20other%29%3A%0D%0ABots%20you%20run%20now%3A%0D%0AWhat%27s%20broken%20or%20annoying%3A%0D%0AAnything%20to%20keep%20exactly%20as%20it%20is%3A%0D%0A">Start with Launch Kit</a>
+        <p class="alt">Not sure? <a href="mailto:hello@xcsv.gg?subject=Free%20server%20audit&amp;body=Server%20name%3A%0D%0AInvite%20link%20%28or%20say%20you%27ll%20send%20screenshots%29%3A%0D%0ARough%20member%20count%3A%0D%0AWhat%20it%27s%20for%20%28streaming%2C%20gaming%20clan%2C%20other%29%3A%0D%0ABots%20you%20run%20now%3A%0D%0AWhat%27s%20broken%20or%20annoying%3A%0D%0AAnything%20to%20keep%20exactly%20as%20it%20is%3A%0D%0A">Start with the free audit</a></p>
+      </article>
+      <article class="card">
+        <span class="sticker">-50%</span>
+        <h3>Custom Bot</h3>
+        <p class="for">For communities that want their mod tools in one bot.</p>
+        <p class="was"><span class="sr-only">Regular price </span><s>$1,800</s></p>
+        <p class="price"><span class="sr-only">Founding price </span>$900</p>
+        <ul class="px-list">
           <li>Everything in Launch Kit</li>
-          <li>XCSV bot configured for your server</li>
-          <li>/mod, tickets, reaction roles, timed messages</li>
+          <li>The XCSV bot, set up for your server</li>
+          <li>/mod and tickets, plus reaction roles and timed messages</li>
         </ul>
-        <a class="btn" href="#contact">GET THE CUSTOM BOT</a>
-      </div>
-      <div class="card">
-        <h3>FULL ENGINE</h3>
-        <div class="was">$4,000</div><div class="price">$2,000</div>
-        <ul>
+        <p class="note">Bot features go live in your server as each one passes testing</p>
+        <a class="btn btn--ghost" href="mailto:hello@xcsv.gg?subject=Custom%20Bot%20%28founding%20price%29&amp;body=Interested%20in%3A%20Custom%20Bot%0D%0AServer%20name%3A%0D%0AInvite%20link%20%28or%20say%20you%27ll%20send%20screenshots%29%3A%0D%0ARough%20member%20count%3A%0D%0AWhat%20it%27s%20for%20%28streaming%2C%20gaming%20clan%2C%20other%29%3A%0D%0ABots%20you%20run%20now%3A%0D%0AWhat%27s%20broken%20or%20annoying%3A%0D%0AAnything%20to%20keep%20exactly%20as%20it%20is%3A%0D%0A">Get the Custom Bot</a>
+      </article>
+      <article class="card">
+        <span class="sticker">-50%</span>
+        <h3>Full Engine</h3>
+        <p class="for">For streamers who want alerts and giveaways on top.</p>
+        <p class="was"><span class="sr-only">Regular price </span><s>$4,000</s></p>
+        <p class="price"><span class="sr-only">Founding price </span>$2,000</p>
+        <ul class="px-list">
           <li>Everything in Custom Bot</li>
-          <li>Streamer kit — going-live alerts, giveaways</li>
-          <li>Game update feeds + priority support</li>
+          <li>Streamer kit: going-live alerts and giveaways</li>
+          <li>Game update feeds posted to your server</li>
+          <li>Priority support</li>
         </ul>
-        <a class="btn" href="#contact">GO FULL ENGINE</a>
+        <p class="note">Streamer kit is on the build plan</p>
+        <a class="btn btn--ghost" href="mailto:hello@xcsv.gg?subject=Full%20Engine%20%28founding%20price%29&amp;body=Interested%20in%3A%20Full%20Engine%0D%0AServer%20name%3A%0D%0AInvite%20link%20%28or%20say%20you%27ll%20send%20screenshots%29%3A%0D%0ARough%20member%20count%3A%0D%0AWhat%20it%27s%20for%20%28streaming%2C%20gaming%20clan%2C%20other%29%3A%0D%0ABots%20you%20run%20now%3A%0D%0AWhat%27s%20broken%20or%20annoying%3A%0D%0AAnything%20to%20keep%20exactly%20as%20it%20is%3A%0D%0A">Go Full Engine</a>
+      </article>
+    </div>
+
+    <div class="terms">
+      <div>
+        <h3>How paying works</h3>
+        <ul class="px-list">
+          <li>The audit is free. The fix list is yours either way.</li>
+          <li>Half up front, half on delivery.</li>
+          <li>You get 5 days after handover to check the build and sign off.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Care plans</h3>
+        <p><strong>$100 / $300 / $750+ a month.</strong> Updates, new bot features as they ship, and priority support. Optional, after launch.</p>
       </div>
     </div>
-    <p class="terms" style="margin-top:32px;">Care plans: <strong>$100 / $300 / $750+</strong> a month — updates, new features as they ship, priority support. Half up front, half on delivery. You sign off within 5 days of handover.</p>
-  </div>
-</section>
 
-<section class="alt" id="proof">
-  <div class="wrap">
-    <h2>PROOF</h2>
-    <div class="proof">
-      <span class="stat">23</span>
-      members. One 23-member gaming community, rebuilt end to end —
-      channels reorganized, roles cleaned up, onboarding and AutoMod locked
-      down. Final verification:
-      <span class="stat">ZERO GAPS</span>
-      Before/after screenshots and the owner's testimonial are on the way.
+    <div class="band">
+      <div><h3>Not sure which build?</h3><p>The audit tells you. It's free, and the fix list is yours.</p></div>
+      <a class="btn" href="mailto:hello@xcsv.gg?subject=Free%20server%20audit&amp;body=Server%20name%3A%0D%0AInvite%20link%20%28or%20say%20you%27ll%20send%20screenshots%29%3A%0D%0ARough%20member%20count%3A%0D%0AWhat%20it%27s%20for%20%28streaming%2C%20gaming%20clan%2C%20other%29%3A%0D%0ABots%20you%20run%20now%3A%0D%0AWhat%27s%20broken%20or%20annoying%3A%0D%0AAnything%20to%20keep%20exactly%20as%20it%20is%3A%0D%0A">Get a free audit</a>
     </div>
   </div>
 </section>
 
-<section id="contact">
+<div class="px-edge to-navy" aria-hidden="true"></div>
+
+<section class="on-navy" id="proof">
   <div class="wrap">
-    <h2>GET YOUR FREE AUDIT</h2>
-    <p>Tell us about your server — size, what it's for, what's broken.<br>We'll reply with your teardown.</p>
-    <!-- TODO(justin): point this at the real contact address -->
-    <a class="btn" href="mailto:hello@xcsv.gg?subject=Free%20server%20audit">EMAIL US</a>
+    <h2>Recent build</h2>
+    <p class="px meta">Gaming community · Minecraft + Arma Reforger · 1 Oct 2026</p>
+    <p>A 23-member gaming community asked me to clean up their server. Here's what I did.</p>
+    <div class="stats">
+      <div class="stat"><span class="px n">23</span>members in the community</div>
+      <div class="stat"><span class="px n">3</span>categories: community, operations, voice</div>
+      <div class="stat"><span class="px n">0</span>channels deleted. Every channel ID kept.</div>
+      <div class="stat"><span class="px n">0</span>gaps found in my final check</div>
+    </div>
+    <div class="proof-cols">
+      <ul class="px-list">
+        <li>Turned on Discord Community and set up native onboarding, with questions that hand out game roles and interests</li>
+        <li>Wrote and pinned the rules, welcome, recruiting and status posts</li>
+        <li>Sorted the old channels into three categories (community, operations, voice) without deleting any of them</li>
+        <li>Switched on 3 native AutoMod rules</li>
+        <li>Locked down @everyone so nobody can mass-mention the server, while chat and voice stay open</li>
+        <li>Added a hidden #mod-log for the staff</li>
+      </ul>
+      <div class="pending">
+        <div class="slot">Owner testimonial <span class="status s-plan">Pending</span></div>
+        <div class="slot">Before/after screenshots <span class="status s-plan">Pending</span></div>
+      </div>
+    </div>
+    <p class="foot-note">The testimonial and screenshots aren't in yet. They go here when they are. I also told the owner to keep their current bots until the XCSV bot is finished. <a href="mailto:hello@xcsv.gg?subject=Free%20server%20audit&amp;body=Server%20name%3A%0D%0AInvite%20link%20%28or%20say%20you%27ll%20send%20screenshots%29%3A%0D%0ARough%20member%20count%3A%0D%0AWhat%20it%27s%20for%20%28streaming%2C%20gaming%20clan%2C%20other%29%3A%0D%0ABots%20you%20run%20now%3A%0D%0AWhat%27s%20broken%20or%20annoying%3A%0D%0AAnything%20to%20keep%20exactly%20as%20it%20is%3A%0D%0A">Want this for your server?</a></p>
   </div>
 </section>
 
-<footer>
+<div class="px-edge to-paper" aria-hidden="true"></div>
+
+<section class="on-paper" id="faq">
   <div class="wrap">
-    <span class="px">XCSV</span> — done-for-you Discord servers.<br>
-    © 2026 XCSV. One bot to replace them all.
+    <h2>FAQ</h2>
+    <details class="faq"><summary>Is the XCSV bot ready?</summary><div class="faq-a"><p>Not yet. /mod is being built now and gets tested on a real community server before any client gets it. Tickets, live alerts and giveaways come after that.</p><p>The server build (channels, roles, onboarding, AutoMod) doesn't need the bot, and I can do it today.</p></div></details>
+    <details class="faq"><summary>Do I have to give the bot Administrator?</summary><div class="faq-a"><p>No. The XCSV bot asks only for the permissions each feature needs and never asks for Administrator.</p><p>For the build itself I need enough access to edit channels, roles and settings. We agree on that before I start, and you can remove my access once you've signed off.</p></div></details>
+    <details class="faq"><summary>I already use MEE6, Carl-bot or Sapphire. Do I have to drop them?</summary><div class="faq-a"><p>No. Keep them. The audit lists which bots overlap and what permissions they hold. While the XCSV bot is in development, I build around the bots you already use.</p></div></details>
+    <details class="faq"><summary>Is the audit really free? What do you need?</summary><div class="faq-a"><p>Yes. The fix list is yours whether you hire me or not. Email me your server's name, roughly how many members you have, what it's for, and what's bugging you. The email button fills in those questions for you. If I need to see inside the server, I'll say so.</p></div></details>
+    <details class="faq"><summary>Will you delete my channels?</summary><div class="faq-a"><p>I reorganize instead of deleting. On my last build every old channel kept its ID, so links and history still work. If something should go, I ask you first.</p></div></details>
+    <details class="faq"><summary>How long does a build take?</summary><div class="faq-a"><p>It depends on the size of the server and which build you pick. You get a date from me before you pay anything.</p></div></details>
+    <details class="faq"><summary>Who owns the server?</summary><div class="faq-a"><p>You do, before, during and after. I never ask for ownership, and everything I build stays in your server when the job is done.</p></div></details>
+    <details class="faq"><summary>What if I cancel the care plan?</summary><div class="faq-a"><p>Your server build stays exactly as it is. The plan only pays for ongoing work: updates, new features and support.</p></div></details>
+    <details class="faq"><summary>How does payment work?</summary><div class="faq-a"><p>Half up front, half on delivery. After handover you have 5 days to check everything and sign off. If something isn't right, tell me in those 5 days.</p></div></details>
+    <details class="faq"><summary>Is this just you?</summary><div class="faq-a"><p>Yes. XCSV is one person. I do the audit, the build and the support, and I'm the one who answers your email.</p></div></details>
+  </div>
+</section>
+
+<div class="px-edge to-navy" aria-hidden="true"></div>
+
+<div class="mbar"><a href="mailto:hello@xcsv.gg?subject=Free%20server%20audit&amp;body=Server%20name%3A%0D%0AInvite%20link%20%28or%20say%20you%27ll%20send%20screenshots%29%3A%0D%0ARough%20member%20count%3A%0D%0AWhat%20it%27s%20for%20%28streaming%2C%20gaming%20clan%2C%20other%29%3A%0D%0ABots%20you%20run%20now%3A%0D%0AWhat%27s%20broken%20or%20annoying%3A%0D%0AAnything%20to%20keep%20exactly%20as%20it%20is%3A%0D%0A">Free server audit</a></div>
+</div><!-- /sticky-zone -->
+
+<section class="on-navy" id="contact">
+  <div class="wrap cta-end">
+    <img class="px-img" src="assets/mascot-head.png" width="128" height="128" alt="">
+    <h2 class="cursor">Get your free audit</h2>
+    <p>Email me about your server: how big it is, what it's for, and what's broken. I'll reply with your fix list.</p>
+    <!-- TODO(justin): point this at the real contact address -->
+    <a class="btn" href="mailto:hello@xcsv.gg?subject=Free%20server%20audit&amp;body=Server%20name%3A%0D%0AInvite%20link%20%28or%20say%20you%27ll%20send%20screenshots%29%3A%0D%0ARough%20member%20count%3A%0D%0AWhat%20it%27s%20for%20%28streaming%2C%20gaming%20clan%2C%20other%29%3A%0D%0ABots%20you%20run%20now%3A%0D%0AWhat%27s%20broken%20or%20annoying%3A%0D%0AAnything%20to%20keep%20exactly%20as%20it%20is%3A%0D%0A">Email me</a>
+    <p class="addr">hello@xcsv.gg</p>
+  </div>
+</section>
+</main>
+
+<footer class="on-navy">
+  <div class="wrap">
+    <p><span class="px">XCSV</span> · Discord server builds for streamers and gaming communities.</p>
+    <p>© 2026 XCSV · hello@xcsv.gg · No trackers on this site.</p>
   </div>
 </footer>
 </body>
