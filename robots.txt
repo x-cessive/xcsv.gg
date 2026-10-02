@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://xcsv.gg/sitemap.xml
+Sitemap: https://xcsv.sovranos.com/sitemap.xml
