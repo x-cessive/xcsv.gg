@@ -21,3 +21,13 @@ curl -s -o /dev/null -w "%{http_code}\n" https://xcsv.sovranos.com/
 
 Preview a branch without touching production: same command with `--branch <branch>`;
 it serves at `https://<branch>.xcsv-gg.pages.dev`.
+
+## AI Handoff & Desktop Logging Rule
+
+ALWAYS update the desktop log upon completing a session, milestone, or handoff:
+1. Save the release report or progress summary in `C:\Users\justi\Desktop\XCSV\`.
+2. Always maintain `C:\Users\justi\Desktop\XCSV\ai.md` with:
+   - Current live state, commit hash, and repo paths.
+   - Pending decisions for Justin.
+   - Active backlog and exact next tasks for the next AI session to pick up immediately.
+
