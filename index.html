@@ -41,7 +41,7 @@
 html{-webkit-text-size-adjust:100%;}
 body{background:var(--navy);color:var(--paper);font:17px/1.6 var(--body);}
 img{display:block;max-width:100%;}
-.px-img{image-rendering:pixelated;image-rendering:crisp-edges;}
+.px-img{image-rendering:crisp-edges;image-rendering:pixelated;}
 h1,h2,h3,.px{font-family:var(--px);font-weight:400;line-height:1.5;text-transform:uppercase;letter-spacing:0;}
 h1{font-size:24px;} h2{font-size:16px;} h3{font-size:16px;}
 @media (min-width:600px){ h1{font-size:32px;} h2{font-size:24px;} }
@@ -72,14 +72,13 @@ h2::before{content:"";display:inline-block;width:8px;height:8px;background:var(-
 .on-paper .px-list li::before{background:var(--navy);}
 
 /* blinking block cursor */
-.cursor::after{content:"";display:inline-block;width:.6em;height:1em;margin-left:6px;vertical-align:-2px;background:currentColor;animation:blink 1s steps(1,end) infinite;}
+.cursor::after{content:"";display:inline-block;width:.6em;height:1em;margin-left:6px;vertical-align:-2px;background:currentColor;animation:blink 1s steps(1,end) 5;}
 @keyframes blink{50%{visibility:hidden;}}
 
 /* buttons: amber cap, hard offset base, press slams down */
-.btn{display:inline-block;font:400 12px/1.5 var(--px);text-transform:uppercase;text-decoration:none;text-align:center;
+.btn{display:inline-block;font:400 16px/1.5 var(--px);text-transform:uppercase;text-decoration:none;text-align:center;
   background:var(--amber);color:var(--navy);border:4px solid var(--navy);padding:16px 24px;min-height:48px;cursor:pointer;
   box-shadow:6px 6px 0 0 var(--edge);transition:transform 120ms steps(2,end),box-shadow 120ms steps(2,end);}
-@media (min-width:600px){ .btn{font-size:16px;} }
 @media (hover:hover){ .btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 0 var(--edge);} }
 .btn:active{transform:translate(6px,6px);box-shadow:0 0 0 0 var(--edge);transition:none;}
 .btn--ghost{background:transparent;color:var(--ink);border-color:var(--ink);}
@@ -101,7 +100,7 @@ a{color:inherit;text-decoration-thickness:2px;text-underline-offset:4px;}
 .brand{display:flex;align-items:center;gap:12px;color:var(--amber);text-decoration:none;margin-right:auto;}
 .brand span{font-size:16px;}
 nav a{font:400 8px/1 var(--px);text-transform:uppercase;text-decoration:none;padding:12px 8px;display:inline-block;color:var(--paper);}
-@media (min-width:900px){ nav a{font-size:12px;padding:12px 10px;} }
+@media (min-width:900px){ nav a{font-size:16px;padding:12px 10px;} }
 @media (hover:hover){ nav a:hover{box-shadow:inset 0 -4px 0 0 var(--amber);} }
 @media (max-width:599px){
   :root{--header-h:0px;}
@@ -115,13 +114,13 @@ nav a{font:400 8px/1 var(--px);text-transform:uppercase;text-decoration:none;pad
 /* hero */
 .hero{padding-top:var(--s6);}
 .hero-grid{display:grid;gap:var(--s5);align-items:center;}
-.hero .mascot{width:200px;height:200px;justify-self:center;order:-1;animation:bob 1.2s steps(1,end) infinite;}
+.hero .mascot{width:200px;height:200px;justify-self:center;order:-1;animation:bob 1.2s steps(1,end) 4;}
 @keyframes bob{50%{transform:translateY(-8px);}}
 .kicker{font-size:8px;color:var(--amber);margin-bottom:var(--s3);}
 .lede{font-size:19px;margin:var(--s4) 0 var(--s5);}
 .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s4);margin-bottom:var(--s4);}
 .micro{font-size:15px;}
-.text-link{font:400 12px/1.5 var(--px);text-transform:uppercase;color:var(--paper);padding:12px 0;}
+.text-link{font:400 16px/1.5 var(--px);text-transform:uppercase;color:var(--paper);padding:12px 0;}
 .tag{display:inline-block;font-size:8px;color:var(--navy);background:var(--amber);padding:8px 10px;margin-top:var(--s4);}
 @media (min-width:900px){ .hero-grid{grid-template-columns:1fr 400px;} .hero .mascot{width:400px;height:400px;order:0;} }
 @media (max-width:599px){ .hero .btn{display:block;width:100%;} .hero .cta-row{gap:var(--s3);} }
@@ -137,7 +136,8 @@ nav a{font:400 8px/1 var(--px);text-transform:uppercase;text-decoration:none;pad
 /* bot showcase: mock Discord windows */
 .dc{background:var(--navy);border:4px solid var(--paper);box-shadow:8px 8px 0 0 var(--amber);margin:0 8px var(--s6) 0;}
 .dc-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;background:var(--paper);color:var(--navy);padding:10px 14px;}
-.dc-bar .px{font-size:12px;margin-right:auto;}
+.dc-bar .px{font-size:16px;margin-right:auto;}
+.dc-grid .dc-bar .px{flex-basis:100%;}
 .dc-ex{font:400 8px var(--px);text-transform:uppercase;}
 .dc-body{padding:var(--s4) var(--s3);font-size:16px;}
 .dc-msg{display:grid;grid-template-columns:32px 1fr;gap:12px;margin-bottom:var(--s3);}
@@ -149,7 +149,7 @@ nav a{font:400 8px/1 var(--px);text-transform:uppercase;text-decoration:none;pad
 .dc-tag{font:400 8px var(--px);text-transform:uppercase;background:var(--amber);color:var(--navy);padding:3px 6px;margin-left:6px;vertical-align:2px;}
 .dc-note{font-size:14px;}
 .dc-embed{border:2px solid var(--paper);border-left:8px solid var(--amber);padding:var(--s3);margin-top:8px;}
-.dc-title{font-size:12px;color:var(--amber);margin-bottom:var(--s3);}
+.dc-title{font-size:16px;color:var(--amber);margin-bottom:var(--s3);}
 .dc-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px 24px;margin-bottom:var(--s3);}
 .dc-fields dt{font:400 8px/1.5 var(--px);text-transform:uppercase;color:var(--amber);}
 .dc-fields dd{font-family:var(--mono);font-size:15px;}
@@ -157,12 +157,13 @@ nav a{font:400 8px/1 var(--px);text-transform:uppercase;text-decoration:none;pad
 .dc-btn{font:400 8px/1 var(--px);text-transform:uppercase;padding:12px;border:2px solid var(--paper);}
 .dc-btn.hot{background:var(--amber);color:var(--navy);border-color:var(--amber);}
 .dc-input{margin:0 var(--s3) var(--s3);border:2px solid var(--paper);padding:12px;font-family:var(--mono);font-size:15px;}
-.dc-type{display:inline-block;overflow:hidden;white-space:nowrap;vertical-align:bottom;width:19ch;animation:type 2s steps(19,end) 1 both;}
+.dc-type{display:inline-block;overflow:hidden;white-space:nowrap;vertical-align:bottom;width:22ch;animation:type 2s steps(22,end) 1 both;}
 @keyframes type{from{width:0;}}
 .dc figcaption{border-top:4px solid var(--paper);padding:var(--s3);font-size:16px;}
 .dc figcaption strong{color:var(--amber);font-weight:700;}
 .dc-grid{display:grid;gap:var(--s5);grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
-.dc-grid .dc{margin-bottom:0;}
+.dc-grid .dc{margin-bottom:0;display:flex;flex-direction:column;}
+.dc-grid .dc figcaption{margin-top:auto;}
 .status{display:inline-block;font:400 8px/1 var(--px);text-transform:uppercase;padding:6px 8px;border:2px solid var(--navy);white-space:nowrap;}
 .s-build{background:var(--amber);color:var(--navy);}
 .s-plan{background:var(--paper);color:var(--navy);border-style:dashed;}
@@ -170,7 +171,7 @@ nav a{font:400 8px/1 var(--px);text-transform:uppercase;text-decoration:none;pad
 .chips li{font:400 8px/1.5 var(--px);text-transform:uppercase;padding:10px 12px;border:2px dashed var(--paper);}
 .chips-note{margin-top:var(--s3);font-size:16px;}
 .perms{list-style:none;display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:var(--s6);}
-.perms li{border:4px solid var(--amber);padding:var(--s3);font:400 8px/1.8 var(--px);text-transform:uppercase;}
+.perms li{border:4px solid var(--amber);padding:var(--s3);font:700 16px/1.5 var(--body);}
 
 /* offers */
 .founding{font-size:18px;margin-bottom:var(--s6);}
@@ -180,22 +181,23 @@ nav a{font:400 8px/1 var(--px);text-transform:uppercase;text-decoration:none;pad
 .card.pick{border-color:var(--amber);}
 .card h3{color:var(--amber);font-size:16px;}
 .card .for{font-size:15px;margin-top:12px;}
-.sticker{position:absolute;top:-16px;right:16px;font:400 12px/1 var(--px);background:var(--amber);color:var(--navy);padding:8px;border:4px solid var(--navy);}
+.sticker{position:absolute;top:-16px;right:16px;font:400 16px/1 var(--px);background:var(--amber);color:var(--navy);padding:8px;border:4px solid var(--navy);}
 .ribbon{position:absolute;top:-16px;left:16px;font:400 8px/1 var(--px);text-transform:uppercase;background:var(--paper);color:var(--navy);padding:10px 8px;border:4px solid var(--navy);}
 .was{font:400 16px/1.5 var(--px);margin-top:var(--s4);}
 .was s{text-decoration-color:var(--amber);text-decoration-thickness:4px;}
 .price{font:400 32px/1.2 var(--px);color:var(--amber);margin:8px 0 var(--s4);}
 .card .px-list li::before{background:var(--amber);}
-.card .px-list{flex:1;margin-bottom:var(--s4);font-size:16px;}
-.card .note{font:400 8px/1.8 var(--px);text-transform:uppercase;border:2px dashed var(--paper);padding:8px 10px;margin-bottom:var(--s4);}
-.card .btn{--edge:var(--paper);--ink:var(--paper);font-size:12px;}
+.card .px-list{margin-bottom:var(--s4);font-size:16px;}
+.card .note{margin-top:auto;font-size:15px;border:2px dashed var(--paper);padding:8px 12px;}
+.card .btn{--edge:var(--paper);--ink:var(--paper);margin-top:var(--s3);}
+.card.pick .btn{--ink:var(--navy);}
 .card .alt{font-size:15px;margin-top:var(--s4);text-align:center;}
 .card .alt a{color:var(--paper);}
 .band{margin-top:var(--s7);border:4px solid var(--navy);padding:var(--s5) var(--s4);display:grid;gap:var(--s4);align-items:center;}
 @media (min-width:900px){ .band{grid-template-columns:1fr auto;} }
 .band h3{font-size:16px;margin-bottom:8px;}
 .terms{display:grid;gap:var(--s4);grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:var(--s7);}
-.terms h3{font-size:12px;margin-bottom:var(--s3);}
+.terms h3{font-size:16px;margin-bottom:var(--s3);}
 
 /* proof */
 .meta{font-size:8px;color:var(--amber);margin:-16px 0 var(--s4);}
@@ -212,7 +214,7 @@ nav a{font:400 8px/1 var(--px);text-transform:uppercase;text-decoration:none;pad
 /* faq */
 .faq{border:4px solid var(--navy);margin-bottom:var(--s3);background:var(--paper);max-width:820px;}
 .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;align-items:center;
-  font:400 12px/1.8 var(--px);text-transform:uppercase;padding:var(--s3);min-height:48px;}
+  font:700 18px/1.4 var(--body);padding:var(--s3);min-height:48px;}
 .faq summary::-webkit-details-marker{display:none;}
 .faq summary::after{content:"+";font-size:16px;flex:none;}
 .faq[open] summary::after{content:"-";}
@@ -222,6 +224,11 @@ nav a{font:400 8px/1 var(--px);text-transform:uppercase;text-decoration:none;pad
 .faq[open] summary:focus-visible{outline-color:var(--amber);}
 .faq-a{padding:var(--s3) var(--s3) var(--s4);}
 .faq-a p+p{margin-top:12px;}
+.tbd{border:2px dashed currentColor;padding:8px 12px;font-size:15px;margin:var(--s3) 0;max-width:62ch;}
+.tbd-l{font:400 8px/1 var(--px);text-transform:uppercase;background:var(--amber);color:var(--navy);padding:4px 6px;margin-right:8px;vertical-align:1px;}
+.faq-a .tbd{margin:0;}
+#offers .founding{margin-bottom:0;}
+#offers .tbd{margin-bottom:var(--s6);}
 
 /* contact */
 .cta-end{text-align:center;display:grid;justify-items:center;gap:var(--s4);}
@@ -234,14 +241,15 @@ nav a{font:400 8px/1 var(--px);text-transform:uppercase;text-decoration:none;pad
 /* mobile sticky CTA: lives inside .sticky-zone, which ends before #contact */
 .mbar{display:none;}
 @media (max-width:599px){
-  .mbar{display:block;position:sticky;bottom:0;z-index:9;background:var(--navy);border-top:4px solid var(--amber);
+  .mbar{display:block;position:sticky;bottom:0;height:0;z-index:9;}
+  .mbar-in{position:absolute;left:0;right:0;bottom:0;background:var(--navy);border-top:4px solid var(--amber);
     padding:8px 16px calc(8px + env(safe-area-inset-bottom));}
-  .mbar a{display:block;font:400 12px/1 var(--px);text-transform:uppercase;text-decoration:none;text-align:center;
+  .mbar a{display:block;font:400 16px/1 var(--px);text-transform:uppercase;text-decoration:none;text-align:center;
     background:var(--amber);color:var(--navy);padding:14px 8px;}
 }
 
 footer{border-top:4px solid var(--amber);padding:var(--s5) 0;font-size:15px;}
-footer .px{color:var(--amber);font-size:12px;}
+footer .px{color:var(--amber);font-size:16px;}
 footer p+p{margin-top:8px;}
 
 @media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth;} }
@@ -278,7 +286,7 @@ footer p+p{margin-top:8px;}
         <a class="text-link" href="#offers">See prices</a>
       </div>
       <p class="micro">Free. No call needed. The fix list is yours whether you hire me or not.</p>
-      <p class="px tag">Founding clients pay 50%</p>
+      <p class="px tag">Founding clients: 50% off</p>
     </div>
     <img class="mascot px-img" src="assets/mascot-full.png" width="400" height="400" alt="XCSV robot mascot: a smiling orange pixel-art robot head with an antenna">
   </div>
@@ -302,14 +310,14 @@ footer p+p{margin-top:8px;}
 
 <section class="on-navy" id="bot">
   <div class="wrap">
-    <h2>What the XCSV bot does</h2>
-    <p class="intro">I'm building my own Discord bot for client servers. It runs on slash commands and buttons, with no prefix commands to memorise. Every feature gets tested on a real community server before any client gets it. The label on each window says where it stands today.</p>
+    <h2>What the XCSV bot will do</h2>
+    <p class="intro">I'm building my own Discord bot for client servers. It runs on slash commands and buttons, with no prefix commands to memorize. Every feature gets tested on a real community server before any client gets it. The label on each window says where it stands today.</p>
 
     <ul class="perms" role="list">
       <li>Slash commands and buttons only</li>
-      <li>Asks only for the permissions it needs</li>
-      <li>Never asks for Administrator</li>
-      <li>Every mod action logged</li>
+      <li>Built to ask only for the permissions it needs</li>
+      <li>Built to never ask for Administrator</li>
+      <li>Built to log every mod action</li>
     </ul>
 
     <figure class="dc">
@@ -346,7 +354,7 @@ footer p+p{margin-top:8px;}
 
     <div class="dc-grid">
       <figure class="dc">
-        <div class="dc-bar"><span class="px">Tickets</span><span class="status s-plan">On the build plan</span></div>
+        <div class="dc-bar"><span class="px">Tickets</span><span class="status s-plan">Planned</span><span class="dc-ex">Example</span></div>
         <div class="dc-body">
           <div class="dc-msg">
             <img class="px-img dc-av" src="assets/favicon-32.png" width="32" height="32" alt="">
@@ -367,7 +375,7 @@ footer p+p{margin-top:8px;}
       </figure>
 
       <figure class="dc">
-        <div class="dc-bar"><span class="px">Live alerts</span><span class="status s-plan">On the build plan</span></div>
+        <div class="dc-bar"><span class="px">Live alerts</span><span class="status s-plan">Planned</span><span class="dc-ex">Example</span></div>
         <div class="dc-body">
           <div class="dc-msg">
             <img class="px-img dc-av" src="assets/favicon-32.png" width="32" height="32" alt="">
@@ -381,7 +389,7 @@ footer p+p{margin-top:8px;}
       </figure>
 
       <figure class="dc">
-        <div class="dc-bar"><span class="px">Giveaways</span><span class="status s-plan">On the build plan</span></div>
+        <div class="dc-bar"><span class="px">Giveaways</span><span class="status s-plan">Planned</span><span class="dc-ex">Example</span></div>
         <div class="dc-body">
           <div class="dc-msg">
             <img class="px-img dc-av" src="assets/favicon-32.png" width="32" height="32" alt="">
@@ -405,7 +413,8 @@ footer p+p{margin-top:8px;}
 <section class="on-paper" id="offers">
   <div class="wrap">
     <h2>Pick your build</h2>
-    <p class="founding">Founding clients pay half while I build my portfolio. In return I ask for honest feedback and, if you're happy, a testimonial.</p>
+    <p class="founding">Founding clients pay 50% of the regular price.</p>
+    <p class="tbd"><span class="tbd-l">To be confirmed</span> How many founding spots there are, and until when.</p>
     <div class="cards">
       <article class="card pick">
         <span class="ribbon">Start here</span><span class="sticker">-50%</span>
@@ -420,7 +429,8 @@ footer p+p{margin-top:8px;}
           <li>Rules, welcome and info posts written and pinned</li>
           <li>Hidden mod-log channel</li>
         </ul>
-        <a class="btn btn--ghost" href="mailto:hello@xcsv.gg?subject=Launch%20Kit%20%28founding%20price%29&amp;body=Interested%20in%3A%20Launch%20Kit%0D%0AServer%20name%3A%0D%0AInvite%20link%20%28or%20say%20you%27ll%20send%20screenshots%29%3A%0D%0ARough%20member%20count%3A%0D%0AWhat%20it%27s%20for%20%28streaming%2C%20gaming%20clan%2C%20other%29%3A%0D%0ABots%20you%20run%20now%3A%0D%0AWhat%27s%20broken%20or%20annoying%3A%0D%0AAnything%20to%20keep%20exactly%20as%20it%20is%3A%0D%0A">Start with Launch Kit</a>
+        <p class="note">Available now</p>
+        <a class="btn" href="mailto:hello@xcsv.gg?subject=Launch%20Kit%20%28founding%20price%29&amp;body=Interested%20in%3A%20Launch%20Kit%0D%0AServer%20name%3A%0D%0AInvite%20link%20%28or%20say%20you%27ll%20send%20screenshots%29%3A%0D%0ARough%20member%20count%3A%0D%0AWhat%20it%27s%20for%20%28streaming%2C%20gaming%20clan%2C%20other%29%3A%0D%0ABots%20you%20run%20now%3A%0D%0AWhat%27s%20broken%20or%20annoying%3A%0D%0AAnything%20to%20keep%20exactly%20as%20it%20is%3A%0D%0A">Start with Launch Kit</a>
         <p class="alt">Not sure? <a href="mailto:hello@xcsv.gg?subject=Free%20server%20audit&amp;body=Server%20name%3A%0D%0AInvite%20link%20%28or%20say%20you%27ll%20send%20screenshots%29%3A%0D%0ARough%20member%20count%3A%0D%0AWhat%20it%27s%20for%20%28streaming%2C%20gaming%20clan%2C%20other%29%3A%0D%0ABots%20you%20run%20now%3A%0D%0AWhat%27s%20broken%20or%20annoying%3A%0D%0AAnything%20to%20keep%20exactly%20as%20it%20is%3A%0D%0A">Start with the free audit</a></p>
       </article>
       <article class="card">
@@ -436,6 +446,7 @@ footer p+p{margin-top:8px;}
         </ul>
         <p class="note">Bot features go live in your server as each one passes testing</p>
         <a class="btn btn--ghost" href="mailto:hello@xcsv.gg?subject=Custom%20Bot%20%28founding%20price%29&amp;body=Interested%20in%3A%20Custom%20Bot%0D%0AServer%20name%3A%0D%0AInvite%20link%20%28or%20say%20you%27ll%20send%20screenshots%29%3A%0D%0ARough%20member%20count%3A%0D%0AWhat%20it%27s%20for%20%28streaming%2C%20gaming%20clan%2C%20other%29%3A%0D%0ABots%20you%20run%20now%3A%0D%0AWhat%27s%20broken%20or%20annoying%3A%0D%0AAnything%20to%20keep%20exactly%20as%20it%20is%3A%0D%0A">Get the Custom Bot</a>
+        <p class="alt">Not sure? <a href="mailto:hello@xcsv.gg?subject=Free%20server%20audit&amp;body=Server%20name%3A%0D%0AInvite%20link%20%28or%20say%20you%27ll%20send%20screenshots%29%3A%0D%0ARough%20member%20count%3A%0D%0AWhat%20it%27s%20for%20%28streaming%2C%20gaming%20clan%2C%20other%29%3A%0D%0ABots%20you%20run%20now%3A%0D%0AWhat%27s%20broken%20or%20annoying%3A%0D%0AAnything%20to%20keep%20exactly%20as%20it%20is%3A%0D%0A">Start with the free audit</a></p>
       </article>
       <article class="card">
         <span class="sticker">-50%</span>
@@ -451,6 +462,7 @@ footer p+p{margin-top:8px;}
         </ul>
         <p class="note">Streamer kit is on the build plan</p>
         <a class="btn btn--ghost" href="mailto:hello@xcsv.gg?subject=Full%20Engine%20%28founding%20price%29&amp;body=Interested%20in%3A%20Full%20Engine%0D%0AServer%20name%3A%0D%0AInvite%20link%20%28or%20say%20you%27ll%20send%20screenshots%29%3A%0D%0ARough%20member%20count%3A%0D%0AWhat%20it%27s%20for%20%28streaming%2C%20gaming%20clan%2C%20other%29%3A%0D%0ABots%20you%20run%20now%3A%0D%0AWhat%27s%20broken%20or%20annoying%3A%0D%0AAnything%20to%20keep%20exactly%20as%20it%20is%3A%0D%0A">Go Full Engine</a>
+        <p class="alt">Not sure? <a href="mailto:hello@xcsv.gg?subject=Free%20server%20audit&amp;body=Server%20name%3A%0D%0AInvite%20link%20%28or%20say%20you%27ll%20send%20screenshots%29%3A%0D%0ARough%20member%20count%3A%0D%0AWhat%20it%27s%20for%20%28streaming%2C%20gaming%20clan%2C%20other%29%3A%0D%0ABots%20you%20run%20now%3A%0D%0AWhat%27s%20broken%20or%20annoying%3A%0D%0AAnything%20to%20keep%20exactly%20as%20it%20is%3A%0D%0A">Start with the free audit</a></p>
       </article>
     </div>
 
@@ -482,7 +494,8 @@ footer p+p{margin-top:8px;}
   <div class="wrap">
     <h2>Recent build</h2>
     <p class="px meta">Gaming community · Minecraft + Arma Reforger · 1 Oct 2026</p>
-    <p>A 23-member gaming community asked me to clean up their server. Here's what I did.</p>
+    <p class="tbd"><span class="tbd-l">To be confirmed</span> Community name: shown once the owner OKs it.</p>
+    <p>I rebuilt the server of a 23-member gaming community. Here's what I did.</p>
     <div class="stats">
       <div class="stat"><span class="px n">23</span>members in the community</div>
       <div class="stat"><span class="px n">3</span>categories: community, operations, voice</div>
@@ -503,7 +516,7 @@ footer p+p{margin-top:8px;}
         <div class="slot">Before/after screenshots <span class="status s-plan">Pending</span></div>
       </div>
     </div>
-    <p class="foot-note">The testimonial and screenshots aren't in yet. They go here when they are. I also told the owner to keep their current bots until the XCSV bot is finished. <a href="mailto:hello@xcsv.gg?subject=Free%20server%20audit&amp;body=Server%20name%3A%0D%0AInvite%20link%20%28or%20say%20you%27ll%20send%20screenshots%29%3A%0D%0ARough%20member%20count%3A%0D%0AWhat%20it%27s%20for%20%28streaming%2C%20gaming%20clan%2C%20other%29%3A%0D%0ABots%20you%20run%20now%3A%0D%0AWhat%27s%20broken%20or%20annoying%3A%0D%0AAnything%20to%20keep%20exactly%20as%20it%20is%3A%0D%0A">Want this for your server?</a></p>
+    <p class="foot-note">The testimonial and screenshots aren't in yet. They go here when they are. <a href="mailto:hello@xcsv.gg?subject=Free%20server%20audit&amp;body=Server%20name%3A%0D%0AInvite%20link%20%28or%20say%20you%27ll%20send%20screenshots%29%3A%0D%0ARough%20member%20count%3A%0D%0AWhat%20it%27s%20for%20%28streaming%2C%20gaming%20clan%2C%20other%29%3A%0D%0ABots%20you%20run%20now%3A%0D%0AWhat%27s%20broken%20or%20annoying%3A%0D%0AAnything%20to%20keep%20exactly%20as%20it%20is%3A%0D%0A">Want this for your server?</a></p>
   </div>
 </section>
 
@@ -513,21 +526,23 @@ footer p+p{margin-top:8px;}
   <div class="wrap">
     <h2>FAQ</h2>
     <details class="faq"><summary>Is the XCSV bot ready?</summary><div class="faq-a"><p>Not yet. /mod is being built now and gets tested on a real community server before any client gets it. Tickets, live alerts and giveaways come after that.</p><p>The server build (channels, roles, onboarding, AutoMod) doesn't need the bot, and I can do it today.</p></div></details>
-    <details class="faq"><summary>Do I have to give the bot Administrator?</summary><div class="faq-a"><p>No. The XCSV bot asks only for the permissions each feature needs and never asks for Administrator.</p><p>For the build itself I need enough access to edit channels, roles and settings. We agree on that before I start, and you can remove my access once you've signed off.</p></div></details>
+    <details class="faq"><summary>Do I have to give the bot Administrator?</summary><div class="faq-a"><p>No. The XCSV bot is being built to ask only for the permissions each feature needs, and never for Administrator.</p><p>For the build itself I need enough access to edit channels, roles and settings. You can remove that access once you've signed off.</p></div></details>
     <details class="faq"><summary>I already use MEE6, Carl-bot or Sapphire. Do I have to drop them?</summary><div class="faq-a"><p>No. Keep them. The audit lists which bots overlap and what permissions they hold. While the XCSV bot is in development, I build around the bots you already use.</p></div></details>
     <details class="faq"><summary>Is the audit really free? What do you need?</summary><div class="faq-a"><p>Yes. The fix list is yours whether you hire me or not. Email me your server's name, roughly how many members you have, what it's for, and what's bugging you. The email button fills in those questions for you. If I need to see inside the server, I'll say so.</p></div></details>
-    <details class="faq"><summary>Will you delete my channels?</summary><div class="faq-a"><p>I reorganize instead of deleting. On my last build every old channel kept its ID, so links and history still work. If something should go, I ask you first.</p></div></details>
-    <details class="faq"><summary>How long does a build take?</summary><div class="faq-a"><p>It depends on the size of the server and which build you pick. You get a date from me before you pay anything.</p></div></details>
-    <details class="faq"><summary>Who owns the server?</summary><div class="faq-a"><p>You do, before, during and after. I never ask for ownership, and everything I build stays in your server when the job is done.</p></div></details>
+    <details class="faq"><summary>Will you delete my channels?</summary><div class="faq-a"><p>On my last build nothing was deleted. Old channels were reorganized and every one kept its ID, so links and history still work.</p></div></details>
+    <details class="faq"><summary>How long does a build take?</summary><div class="faq-a"><p>It depends on the size of the server and which build you pick.</p><p class="tbd"><span class="tbd-l">To be confirmed</span> Typical turnaround for each build.</p></div></details>
+    <details class="faq"><summary>Who owns the server?</summary><div class="faq-a"><p>You do, before, during and after. Everything I build stays in your server when the job is done.</p></div></details>
     <details class="faq"><summary>What if I cancel the care plan?</summary><div class="faq-a"><p>Your server build stays exactly as it is. The plan only pays for ongoing work: updates, new features and support.</p></div></details>
     <details class="faq"><summary>How does payment work?</summary><div class="faq-a"><p>Half up front, half on delivery. After handover you have 5 days to check everything and sign off. If something isn't right, tell me in those 5 days.</p></div></details>
+    <details class="faq"><summary>Can I get a refund?</summary><div class="faq-a"><p class="tbd"><span class="tbd-l">To be confirmed</span> The refund policy isn't set yet. Ask me before you pay and I'll tell you where it stands.</p></div></details>
+    <details class="faq"><summary>Is there a limit on founding prices?</summary><div class="faq-a"><p class="tbd"><span class="tbd-l">To be confirmed</span> The number of founding spots and the end date aren't set yet.</p></div></details>
     <details class="faq"><summary>Is this just you?</summary><div class="faq-a"><p>Yes. XCSV is one person. I do the audit, the build and the support, and I'm the one who answers your email.</p></div></details>
   </div>
 </section>
 
 <div class="px-edge to-navy" aria-hidden="true"></div>
 
-<div class="mbar"><a href="mailto:hello@xcsv.gg?subject=Free%20server%20audit&amp;body=Server%20name%3A%0D%0AInvite%20link%20%28or%20say%20you%27ll%20send%20screenshots%29%3A%0D%0ARough%20member%20count%3A%0D%0AWhat%20it%27s%20for%20%28streaming%2C%20gaming%20clan%2C%20other%29%3A%0D%0ABots%20you%20run%20now%3A%0D%0AWhat%27s%20broken%20or%20annoying%3A%0D%0AAnything%20to%20keep%20exactly%20as%20it%20is%3A%0D%0A">Free server audit</a></div>
+<div class="mbar"><div class="mbar-in"><a href="mailto:hello@xcsv.gg?subject=Free%20server%20audit&amp;body=Server%20name%3A%0D%0AInvite%20link%20%28or%20say%20you%27ll%20send%20screenshots%29%3A%0D%0ARough%20member%20count%3A%0D%0AWhat%20it%27s%20for%20%28streaming%2C%20gaming%20clan%2C%20other%29%3A%0D%0ABots%20you%20run%20now%3A%0D%0AWhat%27s%20broken%20or%20annoying%3A%0D%0AAnything%20to%20keep%20exactly%20as%20it%20is%3A%0D%0A">Free server audit</a></div></div>
 </div><!-- /sticky-zone -->
 
 <section class="on-navy" id="contact">
@@ -545,7 +560,7 @@ footer p+p{margin-top:8px;}
 <footer class="on-navy">
   <div class="wrap">
     <p><span class="px">XCSV</span> · Discord server builds for streamers and gaming communities.</p>
-    <p>© 2026 XCSV · hello@xcsv.gg · No trackers on this site.</p>
+    <p>© 2026 XCSV · <a href="mailto:hello@xcsv.gg">hello@xcsv.gg</a> · No trackers on this site.</p>
   </div>
 </footer>
 </body>
